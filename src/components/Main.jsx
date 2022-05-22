@@ -5,13 +5,18 @@ import requests from "../Requests";
 const Main = () => {
 	const [movies, setMovies] = useState([]);
 
+	// Getting one movie at each page refresh
+
+	const movie = movies[Math.floor(Math.random() * movies.length)];
+
 	// Making API call using useEffect Hook whenever Component Did Mount
+
 	useEffect(() => {
 		axios.get(requests.requestPopular).then((response) => {
-			setMovies(response.data);
+			setMovies(response.data.results);
 		});
 	}, []);
-	console.log(movies);
+	console.log(movie);
 
 	return <div>Main</div>;
 };
