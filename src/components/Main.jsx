@@ -6,18 +6,15 @@ const Main = () => {
 	const [movies, setMovies] = useState([]);
 
 	// Getting one movie at each page refresh
-
 	const movie = movies[Math.floor(Math.random() * movies.length)];
 	const imgSrc = `https://image.tmdb.org/t/p/original${movie.backdrop_path}`;
 
 	// Making API call using useEffect Hook whenever Component Did Mount
-
 	useEffect(() => {
 		axios.get(requests.requestPopular).then((response) => {
 			setMovies(response.data.results);
 		});
 	}, []);
-	console.log(movie);
 
 	return (
 		<div className="w-full h-[550px] text-white">
