@@ -18,7 +18,15 @@ const Main = () => {
 
 	// Get A Random Movie Data Object From our Request
 	const randomMovie = movies[Math.floor(Math.random() * movies.length)];
-	console.log(movies);
+
+	// Function that shortens the number of words for the movie overview text
+	const shortentext = (str, num) => {
+		if (str.length > num) {
+			return str.slice(0, num) + "...";
+		} else {
+			return str;
+		}
+	};
 
 	//Condition Statement to check if "movie" state has been updated with a valid object
 	if (randomMovie === undefined) {
@@ -44,7 +52,7 @@ const Main = () => {
 					</div>
 					<p className="text-gray-400 text-sm mt-2 mb-4">Released: {randomMovie.release_date}</p>
 					<p className="w-full md:max-w-[700%] lg:max-w-[50%] xl:max-w-w[35%] text-gray-200">
-						{randomMovie.overview}
+						{shortentext(randomMovie.overview, 250)}
 					</p>
 				</div>
 			</div>
