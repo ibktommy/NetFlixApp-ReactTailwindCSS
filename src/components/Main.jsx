@@ -20,9 +20,9 @@ const Main = () => {
 	const randomMovie = movies[Math.floor(Math.random() * movies.length)];
 
 	// Function that shortens the number of words for the movie overview text
-	const shortentext = (str, num) => {
+	const shortenStr = (str, num) => {
 		if (str.length > num) {
-			return str.slice(0, num) + "...";
+			return str.slice(0, num) + ".....";
 		} else {
 			return str;
 		}
@@ -36,7 +36,7 @@ const Main = () => {
 	return (
 		<div className="w-full h-[550px] text-white">
 			<div className="w-full h-full">
-				<div className="absolute w-full h-[550px] bg-gradient-to-r from-black"></div>
+				<div className="absolute w-full h-[550px] bg-gradient-to-r from-gray-900"></div>
 				<img
 					className="w-full h-full object-cover"
 					src={`https://image.tmdb.org/t/p/original${randomMovie.backdrop_path}`}
@@ -52,7 +52,7 @@ const Main = () => {
 					</div>
 					<p className="text-gray-400 text-sm mt-2 mb-4">Released: {randomMovie.release_date}</p>
 					<p className="w-full md:max-w-[700%] lg:max-w-[50%] xl:max-w-w[35%] text-gray-200">
-						{shortentext(randomMovie.overview, 250)}
+						{shortenStr(randomMovie.overview, 200)}
 					</p>
 				</div>
 			</div>
