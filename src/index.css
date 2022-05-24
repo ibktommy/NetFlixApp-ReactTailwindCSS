@@ -9,3 +9,7 @@ body {
   font-family: 'Barlow', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
   color: #fff
 }
+
+svg {
+  fill: #000;
+}
