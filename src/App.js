@@ -1,16 +1,16 @@
 import React from "react";
 import { Route, Routes } from "react-router-dom";
-import Navbar from "./components/Navbar";
 import Home from "./pages/Home";
+import Navbar from "./components/Navbar";
 
 function App() {
 	return (
-		<>
+		<React.Fragment>
 			<Navbar />
 			<Routes>
-				<Route path="/" element={<Home />} />
+				<Route exact path="/" element={<Home />}></Route>
 			</Routes>
-		</>
+		</React.Fragment>
 	);
 }
 
