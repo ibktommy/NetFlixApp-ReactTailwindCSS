@@ -14,7 +14,7 @@ const Register = () => {
 							<h1 className="text-2xl font-bold">Register An Account</h1>
 							<form className="w-full flex flex-col py-4 gap-4">
 								<input
-									className="p-3 bg-gray-700 rounded focus:bg-gray-600"
+									className="p-3 bg-gray-700 rounded focus:bg-gray-500"
 									type="email"
 									placeholder="Email"
 									autoComplete="email"
