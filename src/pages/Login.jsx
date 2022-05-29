@@ -1,8 +1,25 @@
-import React from "react";
-import { Link } from "react-router-dom";
+import React, { useState } from "react";
+import { Link, useNavigate } from "react-router-dom";
+import { UserAuth } from "../context/AuthContext";
 import homeBgImage from "../image/home-bg.jpeg";
 
 const Login = () => {
+	// Setting Email and Password As State
+	const [email, setEmail] = useState("");
+	const [password, setPassword] = useState("");
+	const { user, logIn } = UserAuth();
+	const navigate = useNavigate();
+
+	// Function that handles the actions that take place when we submit the Register Form
+	const handleSubmitLogin = async (e) => {
+		e.preventDefault();
+		try {
+			await logIn(email, password);
+			navigate("/account");
+		} catch (error) {
+			console.log(error.message);
+		}
+	};
 	return (
 		<React.Fragment>
 			<div className="w-full h-screen">
@@ -12,14 +29,21 @@ const Login = () => {
 					<div className="max-w-[450px] h-[600px] mx-auto bg-black/75 text-white">
 						<div className="max-w-[320px] mx-auto py-16">
 							<h1 className="text-2xl font-bold">Login To Your Account</h1>
-							<form className="w-full flex flex-col py-4 gap-4">
+							<form onSubmit={handleSubmitLogin} className="w-full flex flex-col py-4 gap-4">
 								<input
+									onChange={(e) => {
+										setEmail(e.target.value);
+									}}
 									className="p-3 bg-gray-700 rounded focus:bg-gray-500"
 									type="email"
 									placeholder="Email"
 									autoComplete="email"
 								/>
 								<input
+									onChange={(e) => {
+										setPassword(e.target.value);
+									}}
+									cla
 									className="p-3 bg-gray-700 rounded focus:bg-gray-500 transition-all"
 									type="password"
 									placeholder="Password"
