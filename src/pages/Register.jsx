@@ -1,8 +1,11 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import homeBgImage from "../image/home-bg.jpeg";
+import { UserAuth } from "../context/AuthContext";
 
 const Register = () => {
+	const { user, register } = UserAuth();
+
 	return (
 		<React.Fragment>
 			<div className="w-full h-screen">
