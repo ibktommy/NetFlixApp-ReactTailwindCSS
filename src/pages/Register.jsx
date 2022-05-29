@@ -28,7 +28,7 @@ const Register = () => {
 					<div className="max-w-[450px] h-[600px] mx-auto bg-black/75 text-white">
 						<div className="max-w-[320px] mx-auto py-16">
 							<h1 className="text-2xl font-bold">Register An Account</h1>
-							<form className="w-full flex flex-col py-4 gap-4">
+							<form onSubmit={handleSubmit} className="w-full flex flex-col py-4 gap-4">
 								<input
 									className="p-3 bg-gray-700 rounded focus:bg-gray-500"
 									type="email"
