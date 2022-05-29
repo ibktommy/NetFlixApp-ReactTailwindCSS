@@ -30,12 +30,18 @@ const Register = () => {
 							<h1 className="text-2xl font-bold">Register An Account</h1>
 							<form onSubmit={handleSubmit} className="w-full flex flex-col py-4 gap-4">
 								<input
+									onChange={(e) => {
+										setEmail(e.target.value);
+									}}
 									className="p-3 bg-gray-700 rounded focus:bg-gray-500"
 									type="email"
 									placeholder="Email"
 									autoComplete="email"
 								/>
 								<input
+									onChange={(e) => {
+										setPassword(e.target.value);
+									}}
 									className="p-3 bg-gray-700 rounded focus:bg-gray-500 transition-all"
 									type="password"
 									placeholder="Password"
