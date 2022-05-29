@@ -2,8 +2,12 @@ import React from "react";
 import { Link } from "react-router-dom";
 import homeBgImage from "../image/home-bg.jpeg";
 import { UserAuth } from "../context/AuthContext";
+import { useState } from "react/cjs/react.production.min";
 
 const Register = () => {
+	// Setting Email and Password As State
+	const [email, setEmail] = useState("");
+	const [password, setPassword] = useState("");
 	const { user, register } = UserAuth();
 
 	return (
