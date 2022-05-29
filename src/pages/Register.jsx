@@ -1,14 +1,23 @@
-import React from "react";
+import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import homeBgImage from "../image/home-bg.jpeg";
 import { UserAuth } from "../context/AuthContext";
-import { useState } from "react/cjs/react.production.min";
 
 const Register = () => {
 	// Setting Email and Password As State
 	const [email, setEmail] = useState("");
 	const [password, setPassword] = useState("");
 	const { user, register } = UserAuth();
+
+	// Function that handles the actions that take place when we submit the Register Form
+	const handleSubmit = async (e) => {
+		e.preventDefault();
+		try {
+			await register(email, password);
+		} catch (error) {
+			console.log(error.message);
+		}
+	};
 
 	return (
 		<React.Fragment>
