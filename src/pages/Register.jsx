@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import homeBgImage from "../image/home-bg.jpeg";
 import { UserAuth } from "../context/AuthContext";
 
@@ -8,12 +8,14 @@ const Register = () => {
 	const [email, setEmail] = useState("");
 	const [password, setPassword] = useState("");
 	const { user, register } = UserAuth();
+	const navigate = useNavigate();
 
 	// Function that handles the actions that take place when we submit the Register Form
 	const handleSubmit = async (e) => {
 		e.preventDefault();
 		try {
 			await register(email, password);
+			navigate("/");
 		} catch (error) {
 			console.log(error.message);
 		}
