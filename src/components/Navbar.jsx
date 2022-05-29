@@ -1,14 +1,16 @@
 import React from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { UserAuth } from "../context/AuthContext";
 
 const Navbar = () => {
 	const { user, logOut } = UserAuth();
+	const navigate = useNavigate();
 
 	// Function that handles the actions that take place when we click the LogOut button
 	const handleLogOut = async () => {
 		try {
 			await logOut();
+			navigate("/account");
 		} catch (error) {
 			console.log(error.message);
 		}
