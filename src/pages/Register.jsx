@@ -7,11 +7,11 @@ const Register = () => {
 	// Setting Email and Password As State
 	const [email, setEmail] = useState("");
 	const [password, setPassword] = useState("");
-	const { user, register } = UserAuth();
+	const { register } = UserAuth();
 	const navigate = useNavigate();
 
 	// Function that handles the actions that take place when we submit the Register Form
-	const handleSubmit = async (e) => {
+	const handleSubmitRegister = async (e) => {
 		e.preventDefault();
 		try {
 			await register(email, password);
@@ -30,7 +30,7 @@ const Register = () => {
 					<div className="max-w-[450px] h-[600px] mx-auto bg-black/75 text-white">
 						<div className="max-w-[320px] mx-auto py-16">
 							<h1 className="text-2xl font-bold">Register An Account</h1>
-							<form onSubmit={handleSubmit} className="w-full flex flex-col py-4 gap-4">
+							<form onSubmit={handleSubmitRegister} className="w-full flex flex-col py-4 gap-4">
 								<input
 									onChange={(e) => {
 										setEmail(e.target.value);

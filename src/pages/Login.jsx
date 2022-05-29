@@ -8,7 +8,7 @@ const Login = () => {
 	const [email, setEmail] = useState("");
 	const [password, setPassword] = useState("");
 	const [error, setError] = useState("");
-	const { user, logIn } = UserAuth();
+	const { logIn } = UserAuth();
 	const navigate = useNavigate();
 
 	// Function that handles the actions that take place when we submit the Register Form
@@ -20,7 +20,6 @@ const Login = () => {
 			navigate("/account");
 		} catch (error) {
 			setError(error.message);
-			// console.log(error.message);
 		}
 	};
 	return (
