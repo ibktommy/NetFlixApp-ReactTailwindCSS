@@ -7,17 +7,20 @@ const Login = () => {
 	// Setting Email and Password As State
 	const [email, setEmail] = useState("");
 	const [password, setPassword] = useState("");
+	const [error, setError] = useState("");
 	const { user, logIn } = UserAuth();
 	const navigate = useNavigate();
 
 	// Function that handles the actions that take place when we submit the Register Form
 	const handleSubmitLogin = async (e) => {
 		e.preventDefault();
+		setError("");
 		try {
 			await logIn(email, password);
 			navigate("/account");
 		} catch (error) {
-			console.log(error.message);
+			setError(error.message);
+			// console.log(error.message);
 		}
 	};
 	return (
@@ -29,6 +32,11 @@ const Login = () => {
 					<div className="max-w-[450px] h-[600px] mx-auto bg-black/75 text-white">
 						<div className="max-w-[320px] mx-auto py-16">
 							<h1 className="text-2xl font-bold">Login To Your Account</h1>
+							{error ? (
+								<p className="py-2 px-4 bg-red-500 text-white mt-4 uppercase font-bold">
+									Invalid Email or Password
+								</p>
+							) : null}
 							<form onSubmit={handleSubmitLogin} className="w-full flex flex-col py-4 gap-4">
 								<input
 									onChange={(e) => {
