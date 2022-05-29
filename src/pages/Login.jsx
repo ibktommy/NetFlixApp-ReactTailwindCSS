@@ -11,7 +11,7 @@ const Login = () => {
 				<div className="fixed w-full px-4 py-24 z-50">
 					<div className="max-w-[450px] h-[600px] mx-auto bg-black/75 text-white">
 						<div className="max-w-[320px] mx-auto py-16">
-							<h1 className="text-2xl font-bold">Register An Account</h1>
+							<h1 className="text-2xl font-bold">Login To Your Account</h1>
 							<form className="w-full flex flex-col py-4 gap-4">
 								<input
 									className="p-3 bg-gray-700 rounded focus:bg-gray-500"
@@ -26,7 +26,7 @@ const Login = () => {
 									autoComplete="current-password"
 								/>
 								<button className="bg-red-600 py-3 mt-4 mb-2 rounded font-bold tracking-wider hover:bg-red-900 transition-all">
-									Click to Register
+									Click to Login
 								</button>
 								<div className="flex justify-between items-center text-sm text-gray-400">
 									<p>
@@ -36,9 +36,9 @@ const Login = () => {
 									<p>Need Help?</p>
 								</div>
 								<p className="py-3">
-									<span className="text-gray-400">Already have an Account?</span>{" "}
-									<Link to="/login" className="underline text-red-600 uppercase font-bold">
-										Log In
+									<span className="text-gray-400">You don't have an Account?</span>{" "}
+									<Link to="/register" className="underline text-red-600 uppercase font-bold">
+										Register
 									</Link>
 								</p>
 							</form>
