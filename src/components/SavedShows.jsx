@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import { MdChevronLeft, MdChevronRight } from "react-icons/md";
 import { UserAuth } from "../context/AuthContext";
 import { db } from "../firebase";
-import { doc, onSnapshot } from "firebase/firestore";
+import { doc, onSnapshot, updateDoc } from "firebase/firestore";
 import { AiOutlineClose } from "react-icons/ai";
 
 const SavedShows = () => {
@@ -19,11 +19,26 @@ const SavedShows = () => {
 		slider.scrollLeft = slider.scrollLeft + 300;
 	};
 
+	// Fetching and Mounting saved Movie from Cloud Firestore to our Component
 	useEffect(() => {
 		onSnapshot(doc(db, "users", `${user?.email}`), (doc) => {
 			setRowMovie(doc.data().savedMovies);
 		});
 	}, [user?.email]);
+
+	// Deleting saved Movie from Cloud Firestore
+	const movieRef = doc(db, "users", `${user?.email}`);
+
+	const deleteMovie = async (movieID) => {
+		try {
+			const newSavedMovie = rowMovie.filter((item) => item.id !== movieID);
+			await updateDoc(movieRef, {
+				savedMovies: newSavedMovie,
+			});
+		} catch (error) {
+			console.log(error.message);
+		}
+	};
 
 	return (
 		<div>
@@ -54,7 +69,12 @@ const SavedShows = () => {
 								<p className="text-white whitespace-normal text-xs md:text-sm font-medium flex justify-center items-center h-full text-center">
 									{item.title}
 								</p>
-								<p className="absolute fill- top-4 right-4">
+								<p
+									onClick={() => {
+										deleteMovie(item.id);
+									}}
+									className="absolute fill- top-4 right-4"
+								>
 									<AiOutlineClose className="fill-gray-300" />
 								</p>
 							</div>
