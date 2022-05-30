@@ -11,7 +11,7 @@ const Register = () => {
 	const navigate = useNavigate();
 
 	// Function that handles the actions that take place when we submit the Register Form
-	const handleSubmitRegister = async (e) => {
+	async function handleSubmitRegister(e) {
 		e.preventDefault();
 		try {
 			await register(email, password);
@@ -19,7 +19,7 @@ const Register = () => {
 		} catch (error) {
 			console.log(error.message);
 		}
-	};
+	}
 
 	return (
 		<React.Fragment>

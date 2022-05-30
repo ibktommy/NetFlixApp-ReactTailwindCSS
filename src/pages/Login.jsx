@@ -8,7 +8,7 @@ const Login = () => {
 	const [email, setEmail] = useState("");
 	const [password, setPassword] = useState("");
 	const [error, setError] = useState("");
-	const { logIn } = UserAuth();
+	const { user, logIn } = UserAuth();
 	const navigate = useNavigate();
 
 	// Function that handles the actions that take place when we submit the Register Form
@@ -50,7 +50,6 @@ const Login = () => {
 									onChange={(e) => {
 										setPassword(e.target.value);
 									}}
-									cla
 									className="p-3 bg-gray-700 rounded focus:bg-gray-500 transition-all"
 									type="password"
 									placeholder="Password"

@@ -1,12 +1,12 @@
 import React from "react";
 import { Route, Routes } from "react-router-dom";
 import Home from "./pages/Home";
-import Navbar from "./components/Navbar";
 import { AuthContextProvider } from "./context/AuthContext";
-import ProtectedRoute from "./components/ProtectedRoute";
+import Navbar from "./components/Navbar";
 import Account from "./pages/Account";
 import Login from "./pages/Login";
 import Register from "./pages/Register";
+import ProtectedRoute from "./components/ProtectedRoute";
 
 function App() {
 	return (
