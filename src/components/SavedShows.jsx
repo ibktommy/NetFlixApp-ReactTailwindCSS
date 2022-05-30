@@ -2,8 +2,7 @@ import React, { useState, useEffect } from "react";
 import { MdChevronLeft, MdChevronRight } from "react-icons/md";
 import { UserAuth } from "../context/AuthContext";
 import { db } from "../firebase";
-import { doc, onSnapshot, getDoc } from "firebase/firestore";
-// import { async } from "@firebase/util";
+import { doc, onSnapshot } from "firebase/firestore";
 
 const SavedShows = () => {
 	const [rowMovie, setRowMovie] = useState([]);
@@ -20,12 +19,10 @@ const SavedShows = () => {
 	};
 
 	useEffect(() => {
-		onSnapshot(doc(db, "users", `${user?.email}`), (doc) => {
-			console.log("Data: ", doc.data());
-
-			setRowMovie(doc.data()?.savedMovies);
+		onSnapshot(doc(db, "users", `${user.email}`), (doc) => {
+			setRowMovie(doc.data().savedMovies);
 		});
-	}, [user?.email]);
+	}, [user.email]);
 
 	return (
 		<div>
