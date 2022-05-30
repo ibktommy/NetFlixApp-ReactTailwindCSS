@@ -12,6 +12,23 @@ const Movie = ({ item }) => {
 	// Creating a Movie ID reference from our Firestore Database
 	const movieID = doc(db, "users", `${user?.email}`);
 
+	// Function to save movie to Database when the Heart Icon is clicked
+	async function saveMovie() {
+		if (user?.email) {
+			setLike(!like);
+			setSaved(true);
+			await updateDoc(movieID, {
+				savedMovies: arrayUnion({
+					id: item.id,
+					title: item.title,
+					img: item.backdrop_path,
+				}),
+			});
+		} else {
+			alert("PLEASE LOG IN YOUR ACCOUNT TO SAVE A MOVIE");
+		}
+	}
+
 	return (
 		<div className="w-[160px] sm:w-[200px] md:w-[240px] lg:w-[280px] inline-block cursor-pointer relative p-2">
 			<img
@@ -23,11 +40,11 @@ const Movie = ({ item }) => {
 				<p className="text-white whitespace-normal text-xs md:text-sm font-medium flex justify-center items-center h-full text-center">
 					{item.title}
 				</p>
-				<p>
+				<p onClick={saveMovie}>
 					{like ? (
-						<FaHeart className="absolute top-4 left-4 text-gray-300" />
+						<FaHeart className="absolute top-4 left-4 fill-gray-300" />
 					) : (
-						<FaRegHeart className="absolute top-4 left-4 text-gray-300" />
+						<FaRegHeart className="absolute top-4 left-4 fill-gray-300" />
 					)}
 				</p>
 			</div>
