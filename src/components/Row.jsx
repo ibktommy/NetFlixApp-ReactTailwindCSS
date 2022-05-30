@@ -35,7 +35,7 @@ const Row = ({ title, fetchURL, rowID }) => {
 	};
 
 	return (
-		<React.Fragment>
+		<React.Fragment> 
 			<h2 className="text-white font-normal uppercase tracking-wider text-center text-3xl md:text-4xl lg:text-5xl p-6 underline">
 				{title}
 			</h2>

@@ -1,10 +1,14 @@
 import React, { useState, useEffect } from "react";
-import { MdChevronLeft, MdChevronRight } from "reac-icons/md";
+import { MdChevronLeft, MdChevronRight } from "react-icons/md";
 import { UserAuth } from "../context/AuthContext";
 import { db } from "../firebase";
-import { updateDoc, doc, onSnapshot } from "firebase/firestore";
+import { doc, onSnapshot, getDoc } from "firebase/firestore";
+// import { async } from "@firebase/util";
 
 const SavedShows = () => {
+	const [rowMovie, setRowMovie] = useState([]);
+	const { user } = UserAuth();
+
 	// Function to Make The Arrow Icons Work - Slide the images when the icons are clicked
 	const sliderLeft = () => {
 		let slider = document.getElementById("slider");
@@ -14,6 +18,14 @@ const SavedShows = () => {
 		let slider = document.getElementById("slider");
 		slider.scrollLeft = slider.scrollLeft + 300;
 	};
+
+	useEffect(() => {
+		onSnapshot(doc(db, "users", `${user?.email}`), (doc) => {
+			console.log("Data: ", doc.data());
+
+			setRowMovie(doc.data()?.savedMovies);
+		});
+	}, [user?.email]);
 
 	return (
 		<div>
@@ -31,7 +43,10 @@ const SavedShows = () => {
 					className="relative w-full h-full whitespace-nowrap overflow-x-scroll scroll-smooth scrollbar-hide"
 				>
 					{rowMovie.map((item, id) => (
-						<div className="w-[160px] sm:w-[200px] md:w-[240px] lg:w-[280px] inline-block cursor-pointer relative p-2">
+						<div
+							key={id}
+							className="w-[160px] sm:w-[200px] md:w-[240px] lg:w-[280px] inline-block cursor-pointer relative p-2"
+						>
 							<img
 								className="w-full h-auto block"
 								src={`https://image.tmdb.org/t/p/w500/${item?.img}`}

@@ -1,4 +1,5 @@
 import React from "react";
+import SavedShows from "../components/SavedShows";
 import homeBgImage from "../image/home-bg.jpeg";
 
 const Account = () => {
@@ -11,6 +12,7 @@ const Account = () => {
 					<h1 className="text-3xl md:text-5xl font-bold tracking-wide">My Shows</h1>
 				</div>
 			</div>
+			<SavedShows />
 		</React.Fragment>
 	);
 };
