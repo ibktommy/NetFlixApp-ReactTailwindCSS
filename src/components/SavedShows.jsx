@@ -3,6 +3,7 @@ import { MdChevronLeft, MdChevronRight } from "react-icons/md";
 import { UserAuth } from "../context/AuthContext";
 import { db } from "../firebase";
 import { doc, onSnapshot } from "firebase/firestore";
+import { AiOutlineClose } from "react-icons/ai";
 
 const SavedShows = () => {
 	const [rowMovie, setRowMovie] = useState([]);
@@ -19,14 +20,14 @@ const SavedShows = () => {
 	};
 
 	useEffect(() => {
-		onSnapshot(doc(db, "users", `${user.email}`), (doc) => {
+		onSnapshot(doc(db, "users", `${user?.email}`), (doc) => {
 			setRowMovie(doc.data().savedMovies);
 		});
-	}, [user.email]);
+	}, [user?.email]);
 
 	return (
 		<div>
-			<h2 className="text-white font-normal uppercase tracking-wider text-center text-3xl md:text-4xl lg:text-5xl p-6 underline">
+			<h2 className="font-normal text-white capitalize tracking-wider text-left text-2xl md:text-4xl lg:text-5xl p-6 underline">
 				My Saved Movies
 			</h2>
 			<div className="relative text-white flex items-center group">
@@ -52,6 +53,9 @@ const SavedShows = () => {
 							<div className="absolute top-0 left-0 w-full h-full hover:bg-black/80 opacity-0 hover:opacity-100 text-white transition-all">
 								<p className="text-white whitespace-normal text-xs md:text-sm font-medium flex justify-center items-center h-full text-center">
 									{item.title}
+								</p>
+								<p className="absolute fill- top-4 right-4">
+									<AiOutlineClose className="fill-gray-300" />
 								</p>
 							</div>
 						</div>
