@@ -6,6 +6,11 @@ import { arrayUnion, doc, updateDoc } from "firebase/firestore";
 
 const Movie = ({ item }) => {
 	const [like, setLike] = useState(false);
+	const [saved, setSaved] = useState(false);
+	const { user } = UserAuth();
+
+	// Creating a Movie ID reference from our Firestore Database
+	const movieID = doc(db, "users", `${user?.email}`);
 
 	return (
 		<div className="w-[160px] sm:w-[200px] md:w-[240px] lg:w-[280px] inline-block cursor-pointer relative p-2">
